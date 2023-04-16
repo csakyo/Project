@@ -8,25 +8,54 @@
 </head>
 <body>
     <div id="app">
-        {{ message }}
-        <a :href="google">googleへのリンク</a>
-        <input v-bind="formInput">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.auther }}</td>
+                    <td>{{ book.url }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <script>
     let app = new Vue({
         el: '#app', // 仮想DOM
         data() {
             return {
-                message: 'Hello Vue!',
-                google: 'https://google.com',
                 book: {
                     title: '本のタイトル',
                     url: 'https://google.com'
                 },
-                formInput:{
-                    name: 'your_name',
-                    placeholder: 'お名前を入れて下さい'
-                }
+                books: [
+                    {
+                    id:1,
+                    title: '本のタイトル1',
+                    auther: '著者名1',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:2,
+                    title: '本のタイトル2',
+                    auther: '著者名2',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:3,
+                    title: '本のタイトル3',
+                    auther: '著者名3',
+                    url: 'https://google.com' 
+                    },
+                ]
             }
         }
     })
