@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ totalPrice }}
+    </div>
+    <script>
+    let app = new Vue({
+        el: '#app', // 仮想DOM
+        data() {
+            return {
+                price : 1,
+                number: 1,
+                books: [
+                    {
+                    id:1,
+                    title: '本のタイトル1',
+                    auther: '著者名1',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:2,
+                    title: '本のタイトル2',
+                    auther: '著者名2',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:3,
+                    title: '本のタイトル3',
+                    auther: '著者名3',
+                    url: 'https://google.com' 
+                    },
+                ]
+            }
+        },
+        method: {},
+        computed: {
+            // totalPrice(){
+            //     return this.number * this.price
+            // }
+            totalPrice: app => app.number * app.price
+        },
+        watch: {
+            books: {
+                handler(){
+                    console.log('変更されました')
+                },
+                deep: true
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>タイトル</th>
+                    <th>著者</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="book in books">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.auther }}</td>
+                    <td>{{ book.url }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+    let app = new Vue({
+        el: '#app', // 仮想DOM
+        data() {
+            return {
+                book: {
+                    title: '本のタイトル',
+                    url: 'https://google.com'
+                },
+                books: [
+                    {
+                    id:1,
+                    title: '本のタイトル1',
+                    auther: '著者名1',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:2,
+                    title: '本のタイトル2',
+                    auther: '著者名2',
+                    url: 'https://google.com' 
+                    },
+                    {
+                    id:3,
+                    title: '本のタイトル3',
+                    auther: '著者名3',
+                    url: 'https://google.com' 
+                    },
+                ]
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
