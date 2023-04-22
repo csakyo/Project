@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+</head>
+<body>
+    <script>
+        let obj = [
+            {id:1, title: 'aaa'},
+            {id:2, title: 'bbb'},
+            {id:3, title: 'ccc'}
+        ]
+
+        obj.splice(3,0,{id:4, title:'ddd'});
+        console.log(obj)
+    </script>
+</body>
+</html>
