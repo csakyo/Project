@@ -23,3 +23,4 @@ const eachNumber = (...items) => {
     }
 };
 eachNumber(1, 2, 3);
+//# sourceMappingURL=function.js.map
