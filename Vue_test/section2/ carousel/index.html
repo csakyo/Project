@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <section class="carousel">
+            <div class="carousel__main"></div>
+            <div @click="prev" class="carousel__prev"><i class="fas fa-times"></i></div>
+            <div @click="next" class="carousel__next"><i class="fas fa-times"></i></div>
+            <ul class="carousel__thumbnails">
+                <li v-for="(image, id) in images"
+                :key="image.id"
+                :class="{current: active === image.id}"
+                @click="current(image.id)">
+            <img :src="image.img"</li>
+            </ul>
+        </section>
+    </div>
+    <script>
+        let app = new Vue({
+            el : '#app',
+            data(){
+                return{
+                    active: 0,
+                    images: [
+                        {id:0, img:'images/image00.jpg'},
+                        {id:1, img:'images/image01.jpg'},
+                        {id:2, img:'images/image02.jpg'},
+                        {id:3, img:'images/image03.jpg'},
+                        {id:4, img:'images/image04.jpg'},
+                    ]         
+                }
+            },
+            methods: {
+                current(id){
+                    this.active = id
+                },
+                prev(){
+                    if(this.active <= 0) {
+                        this.active = this.images.length - 1
+                    } else {
+                        this.active--
+                    }
+                },
+                next(){
+                    if(this.active >= this.images.length - 1) {
+                        this.active = 0
+                    } else {
+                        this.active++
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
