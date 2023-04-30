@@ -3,14 +3,53 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/mainchildren">Children</router-link> |
-    <router-link to="/teleporttest">teleporttest</router-link>
+    <router-link to="/teleporttest">teleporttest</router-link> |
+    <router-link to="/composition-test">Composition</router-link> |
+    <router-link to="/props-emit-test">Composition</router-link>
+    <router-link to="/function-test">Function</router-link>
+  <router-view 
+  :setupBooks="setupBooks" 
+  :dataBooks="dataBooks"
+  @custom-event="parentMethod"
+  />
   </nav>
-  <router-view/>
 </template>
 <script>
+  import { reactive } from 'vue'
   export default {
+    setup(){
+      const setupBooks = reactive([
+          {
+            title: 'dataタイトル1',
+            author: 'data著者1'
+          },
+          {
+            title: 'dataタイトル2',
+            author: 'data著者2'
+          },
+      ])
+      return {
+        setupBooks, 
+      }
+    },
     data() {
-      return {}
+      return {
+        dataBooks:[
+          {
+            title: 'dataタイトル1',
+            author: 'data著者1'
+          },
+          {
+            title: 'dataタイトル2',
+            author: 'data著者2'
+          },
+        ]
+      }
+    },
+    methods: {
+      parentMethod(e){
+        console.log(e)
+      }
     },
     provide(){
       return {
