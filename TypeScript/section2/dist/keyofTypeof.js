@@ -1,3 +1,4 @@
+"use strict";
 const SIZE = {
     SMALL: '小',
     MEDIUM: '中',

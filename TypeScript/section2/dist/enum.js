@@ -1,3 +1,4 @@
+"use strict";
 var SIZEEnum;
 (function (SIZEEnum) {
     SIZEEnum[SIZEEnum["Small"] = 0] = "Small";

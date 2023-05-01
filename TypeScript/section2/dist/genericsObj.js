@@ -1,3 +1,4 @@
+"use strict";
 const soccerMember = {
     name: 'takahashi',
     age: 22,
