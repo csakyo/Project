@@ -5,8 +5,9 @@
     <router-link to="/mainchildren">Children</router-link> |
     <router-link to="/teleporttest">teleporttest</router-link> |
     <router-link to="/composition-test">Composition</router-link> |
-    <router-link to="/props-emit-test">Composition</router-link>
-    <router-link to="/function-test">Function</router-link>
+    <router-link to="/props-emit-test">Composition</router-link> |
+    <router-link to="/function-test">Function</router-link> |
+    <router-link to="/function-test2">Function2</router-link>
   <router-view 
   :setupBooks="setupBooks" 
   :dataBooks="dataBooks"

@@ -38,7 +38,7 @@ export default {
             amount: 0
         })
 
-        const {increment,decrement,totalPrice} = useCounter(item)
+        const {increment, decrement, totalPrice} = useCounter(item)
 
         return {
             item,
