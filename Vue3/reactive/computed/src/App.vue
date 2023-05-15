@@ -1,21 +1,24 @@
 
 <template>
-  <p>半径{{ radius }}の円面積を円周率{{ PI }} で計算すると、{{ area }}</p>
+  <p>半径{{ data.radius }}の円面積を円周率{{ PI }} で計算すると、{{ area }}</p>
 </template>
 
 <script setup lang="ts">
-import {ref, computed} from 'vue'
+import {reactive, computed} from 'vue'
 
-const radiusInit = Math.round(Math.random() * 10)
-const radius = ref(radiusInit)
-const PI = ref(3.14)
+const data = reactive({
+    PI: 3.14,
+    radius: Math.round(Math.random() * 10)
+  })
 
 const area = computed(() => {
-  return radius.value * radius.value * PI.value
+  return data.radius * data.radius * data.PI
 })
+const radiusInit = Math.round(Math.random() * 10)
+
 
 setInterval(()=> {
-  radius.value = Math.round(Math.random() * 10)
+  data.radius = Math.round(Math.random() * 10)
 }, 1000)
 
 
