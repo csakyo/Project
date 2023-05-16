@@ -35,3 +35,13 @@ const eachNumber = (...items: number[]) : void => {
 }
 
 eachNumber(1,2,3)
+
+
+const funcTestE = (str: string, upper: boolean = false) => {
+    if (upper) {
+        return str.toUpperCase();
+    } else {
+        return str.toLowerCase();
+    }
+}
+console.log(funcTestE('hello'))
