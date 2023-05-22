@@ -1,21 +1,28 @@
-<script setup lang="ts">
-import {ref} from "vue";
+<script setup>
+import {ref, computed} from "vue";
 
-const inputNameBind = ref('aaa')
-const inputNameOn = ref('bbb')
+const msg = "HELLO";
 
+const txtColorRed = ref("red");
+const style1 = ref({
+  fontSize: "25px",
+  color: "blue" 
+});
+const style2 = ref({
+  fontSize: "28px",
+  background: "green"
+})
+const fontSizeStyle = computed(() => {
+    const size = Math.round(Math.random() * 25);
+    return `${size}px`
+  })
 
-const onInputName = (e) => {
-  const element = e.target.value;
-  inputNameOn.value = element
-}
 </script>
 
 <template>
-	<section>
-		<input type="text" v-bind:value="inputNameBind">
-	<br>
-		<input type="text" v-on:input="onInputName">
-		<p>{{inputNameOn}}</p>
-	</section>
+  <p v-bind:style="{color: 'pink'}"> {{ msg }} </p>
+  <p v-bind:style="{color: txtColorRed}"> {{ msg }} </p>
+  <p v-bind:style="style1"> {{ msg }} </p>
+  <p v-bind:style="[style1, style2]"> {{ msg }} </p>
+  <p v-bind:style="{fontSize: fontSizeStyle}"> {{ msg }} </p>
 </template>
