@@ -2,6 +2,7 @@
 interface Props {
     title: string;
     content: string;
+    no: number;
 }
 defineProps<Props>();
 </script>
@@ -10,6 +11,7 @@ defineProps<Props>();
     <section class="box">
         <h4>{{ title }}</h4>
         <p>{{ content }}</p>
+        <p>{{ no }}</p>
     </section>
 </template>
 
