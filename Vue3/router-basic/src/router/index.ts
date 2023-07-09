@@ -9,10 +9,10 @@ const routeSettings: RouteRecordRaw[] = [
     component: AppTop
   },
   {
-    path: '/member/memberList',
+    path: '/member/MemberList',
     name: 'MemberList',
     component: () => {
-      return import ("@/views/member/MemberList.vue")
+      return import("@/views/member/MemberList.vue")
     }
   },
 ]
