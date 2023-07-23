@@ -10,8 +10,11 @@
         <p>reactiveToRefs: {{authorRef[0]}}</p>
         <button @click="btnClick">クリック</button>
         <p>computed: {{totalPrice}}</p>
-        <div>watch:<input v-model="search"></div>
-        <div>watchEffect:<input v-model="search"></div>
+        <div>watch:<input v-model="search">
+        {{search}}
+        {{prevValue}}
+        </div>
+        <div>watchEffect:<input v-model="searchEffect"></div>
     </div>
 </template>
 
