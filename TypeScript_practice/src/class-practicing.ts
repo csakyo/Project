@@ -2,9 +2,15 @@ export {};
 
 class Person {
   name: string = "";
-  age: number = 0;
+  readonly age: number = 0;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
 }
 
-const taro = new Person();
+const taro = new Person("taro", 12);
 console.log(taro.age);
-// 0
+
+taro.age = 23;
