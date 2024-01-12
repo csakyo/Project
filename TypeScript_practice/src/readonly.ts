@@ -7,3 +7,7 @@ class VisaCars {
     this.owner = owner;
   }
 }
+
+let myVisaCard = new VisaCars("taro");
+console.log(myVisaCard.owner);
+// myVisaCard.owner = "hanako";
