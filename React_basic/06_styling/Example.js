@@ -1,3 +1,5 @@
+import "./Example.css";
+
 const Example = () => {
   return (
     <div class="component">
