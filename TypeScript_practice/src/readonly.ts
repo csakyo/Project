@@ -1,13 +1,8 @@
 export {};
 
-class VisaCars {
-  readonly owner: string;
-
-  constructor(owner: string) {
-    this.owner = owner;
-  }
+class VisaCard {
+  constructor(public readonly owner: string) {}
 }
 
-let myVisaCard = new VisaCars("taro");
+let myVisaCard = new VisaCard("taro");
 console.log(myVisaCard.owner);
-// myVisaCard.owner = "hanako";
