@@ -1,5 +1,5 @@
 import "./Example.css";
-import { Child } from "./components/Child";
+import Child from "./components/Child";
 
 const Example = () => <Child />;
 
