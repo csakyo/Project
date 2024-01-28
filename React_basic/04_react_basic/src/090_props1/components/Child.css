@@ -1,0 +1,16 @@
+.component {
+  padding: 1rem;
+  color: blue;
+  border: 5px solid blue;
+}
+
+.component.red {
+  padding: 1rem;
+  color: red;
+  border: 5px solid red;
+}
+.component.green {
+  padding: 1rem;
+  color: green;
+  border: 5px solid green;
+}

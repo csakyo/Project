@@ -10,7 +10,7 @@ const lectures = [
   // '080_expr_in_jsx',
   // '085_expr_and_state',
   // '087_practice_expr',
-  // '090_props',
+  "090_props1",
   // '100_practice_props',
   // '110_props_children',
   // '120_props_rules',

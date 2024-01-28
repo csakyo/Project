@@ -2,7 +2,7 @@ import "./Example.css";
 
 const Example = () => {
   return (
-    <div class="component">
+    <div className="component">
       <h3>Hello Component</h3>
     </div>
   );
