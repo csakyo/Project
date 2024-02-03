@@ -16,7 +16,9 @@ class Lion extends Animal {
     this.speed = speed;
   }
   run(): string {
-    return "I can run 89km.";
+    const parentMessage = super.run();
+    console.log({ parentMessage });
+    return `${super.run()} ${this.speed}km.`;
   }
 }
 
