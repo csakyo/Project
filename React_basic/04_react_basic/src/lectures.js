@@ -13,7 +13,7 @@ const lectures = [
   "090_props1",
   // '100_practice_props',
   // '110_props_children',
-  // '120_props_rules',
+  "120_props_rules",
   // '130_whats_jsx',
   // '140_react_element_component',
 ];
