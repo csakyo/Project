@@ -1,14 +1,16 @@
+import { useState } from "react";
+
 const Example = () => {
-  let displayVal;
+  let [val, setVal] = useState();
   return (
     <>
       <input
         type="text"
         onChange={(e) => {
-          displayVal = e.target.value;
+          setVal(e.target.value);
         }}
       />
-      = {displayVal}
+      = {val}
     </>
   );
 };
