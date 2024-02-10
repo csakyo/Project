@@ -6,7 +6,7 @@ const lectures = [
   // "015_other_events",
   "020_useState",
   // "030_useState_render",
-  // "040_multiple_state",
+  "040_multiple_state",
   // "050_prev_state",
   // "055_practice_state",
   // "060_state_object",
