@@ -5,5 +5,10 @@ const Example = () => {
   const countUp = () => {
     setCount(count + 1);
   };
-  return <></>;
+  return (
+    <>
+      <p>現在のカウント数: {count}</p>
+      <button onClick={countUp}></button>
+    </>
+  );
 };
