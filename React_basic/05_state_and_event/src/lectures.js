@@ -9,7 +9,7 @@ const lectures = [
   "040_multiple_state",
   "050_prev_state",
   // "055_practice_state",
-  // "060_state_object",
+  "060_state_object",
   // "064_state_array",
   // "068_practice_obj_state",
   // "070_state_and_component",
