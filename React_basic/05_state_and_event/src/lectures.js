@@ -11,7 +11,7 @@ const lectures = [
   // "055_practice_state",
   "060_state_object",
   // "064_state_array",
-  // "068_practice_obj_state",
+  "068_practice_obj_state",
   // "070_state_and_component",
   // "080_state_and_props",
   // "090_practice_state_props",
