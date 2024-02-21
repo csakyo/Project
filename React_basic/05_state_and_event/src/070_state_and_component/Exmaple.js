@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+// const Example = () => {
+//   return (
+//     <>
+//       <Count />
+//       <Count />
+//     </>
+//   );
+// };
+
 const Example = () => {
   const [count, setCount] = useState(0);
   const countUp = () => {
