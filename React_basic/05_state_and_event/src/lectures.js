@@ -13,8 +13,8 @@ const lectures = [
   "065_state_array",
   "068_practice_obj_state",
   "070_state_and_component",
-  // "080_state_and_props",
-  // "090_practice_state_props",
+  "080_state_and_props",
+  "090_practice_state_props",
 ];
 
 export default lectures;
