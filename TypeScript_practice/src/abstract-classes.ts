@@ -9,3 +9,5 @@ class Lion extends Animal {
     return "roar";
   }
 }
+
+class Tiger extends Animal {}
