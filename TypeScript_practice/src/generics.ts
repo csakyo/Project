@@ -4,7 +4,17 @@ const echo = <T>(arg: T): T => {
   return arg;
 };
 
-console.log(echo<number>(100));
+const echo2 = function <T>(arg: T): T {
+  return arg;
+};
+
+const echo3 = {
+  echo<T>(arg: T): T {
+    return arg;
+  },
+};
+
+console.log(echo3.echo<number>(100));
 
 class Mirror<T> {
   constructor(public value: T) {}
