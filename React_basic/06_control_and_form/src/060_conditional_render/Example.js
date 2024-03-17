@@ -2,9 +2,10 @@ import { useState } from "react";
 
 const Example = () => {
   const animals = ["Dog", "Cat", "Rat"];
+  const [filterVal, setFilterVal] = useState("");
   return (
     <>
-      {/* <input
+      <input
         type="text"
         value={filterVal}
         onChange={(e) => setFilterVal(e.target.value)}
@@ -12,14 +13,15 @@ const Example = () => {
       <ul>
         {animals
           .filter((animal) => {
-            const isMatcg = animal.indexOf(filterVal) !== -1;
-            console.log(animal.indexOf(filterVal));
+            const isMatch = animal.indexOf(filterVal) !== -1;
             return isMatch;
           })
-          .map((animal) => (
-            <li key={animal}>{animal}</li>
-          ))}
-      </ul> */}
+          .map((animal) => {
+            return (
+              <li key={animal}>{animal === "Dog" ? animal + "★" : animal}</li>
+            );
+          })}
+      </ul>
     </>
   );
 };
