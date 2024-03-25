@@ -11,11 +11,6 @@ const Example = () => {
       default:
         throw new Error("不明なactionです");
     }
-    // if (action === "+") {
-    //   return ++prev;
-    // } else if (action === "-") {
-    //   return --prev;
-    // }
   }, 0);
 
   const countUp = () => {
