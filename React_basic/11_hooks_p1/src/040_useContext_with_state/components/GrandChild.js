@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MyContext } from "../Example";
 
-const GrandChild = ({ value }) => {
+const GrandChild = () => {
   const value = useContext(MyContext);
   return (
     <div style={{ border: "1px solid black" }}>
