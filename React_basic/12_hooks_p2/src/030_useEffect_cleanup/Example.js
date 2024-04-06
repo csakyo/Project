@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react";
 
 const Example = () => {
+  const [isDisp, setIsDisp] = useState(true);
+
+  return (
+    <>
+      {isDisp && <Timer />}
+      <button onClick={() => setIsDisp((prev) => !prev)}>トグル</button>
+    </>
+  );
+};
+
+const Timer = () => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
-    window.setInterval(() => {
+    let intervalId = null;
+    intervalId = window.setInterval(() => {
+      console.log("called");
       setTime((prev) => prev + 1);
     }, 1000);
-  }, []);
 
-  useEffect(() => {
-    console.log(time);
-  }, [time]);
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <h3>
