@@ -17,7 +17,6 @@ const Timer = () => {
   useEffect(() => {
     let intervalId = null;
     intervalId = window.setInterval(() => {
-      console.log("called");
       setTime((prev) => prev + 1);
     }, 1000);
 
