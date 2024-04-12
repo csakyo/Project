@@ -38,6 +38,9 @@ const Timer = () => {
     }
   }, []);
 
+  const toggle = () => {};
+  const reset = () => {};
+
   return (
     <>
       <h3>
@@ -45,8 +48,8 @@ const Timer = () => {
         <span>秒経過</span>
       </h3>
       <div>
-        <button>スタート</button>
-        <button>リセット</button>
+        <button onClick={toggle}>スタート</button>
+        <button onClick={reset}>リセット</button>
       </div>
     </>
   );
