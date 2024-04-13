@@ -16,6 +16,7 @@ const Example = () => {
 
 const Timer = () => {
   const [time, setTime] = useState(0);
+  const [isRunning, setIsRuning] = useState(false);
 
   useEffect(() => {
     let intervalId = null;
@@ -38,7 +39,9 @@ const Timer = () => {
     }
   }, []);
 
-  const toggle = () => {};
+  const toggle = () => {
+    setIsRuning((prev) => !prev);
+  };
   const reset = () => {};
 
   return (
@@ -48,7 +51,7 @@ const Timer = () => {
         <span>秒経過</span>
       </h3>
       <div>
-        <button onClick={toggle}>スタート</button>
+        <button onClick={toggle}>{isRunning ? "一時停止" : "スタート"}</button>
         <button onClick={reset}>リセット</button>
       </div>
     </>
