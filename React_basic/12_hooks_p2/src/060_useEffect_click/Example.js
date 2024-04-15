@@ -20,17 +20,16 @@ const Timer = () => {
 
   useEffect(() => {
     let intervalId = null;
-    intervalId = window.setInterval(() => {
-      setTime((prev) => prev + 1);
-    }, 1000);
-
-    document.title = "counter:" + time;
-    window.localStorage.setItem("time-key", time);
+    if (isRunning) {
+      intervalId = window.setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+    }
 
     return () => {
       window.clearInterval(intervalId);
     };
-  }, [time]);
+  }, [isRunning]);
 
   useLayoutEffect(() => {
     const _time = parseInt(window.localStorage.getItem("time-key"));
@@ -42,7 +41,10 @@ const Timer = () => {
   const toggle = () => {
     setIsRuning((prev) => !prev);
   };
-  const reset = () => {};
+  const reset = () => {
+    setTime(0);
+    setIsRuning((prev) => !prev);
+  };
 
   return (
     <>
