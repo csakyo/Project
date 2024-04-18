@@ -1,4 +1,5 @@
 import { useLayoutEffect, useEffect, useState } from "react";
+import useTimer from "./useTimer";
 
 const Example = () => {
   const [isDisp, setIsDisp] = useState(true);
@@ -15,37 +16,7 @@ const Example = () => {
 };
 
 const Timer = () => {
-  const [time, setTime] = useState(0);
-  const [isRunning, setIsRuning] = useState(false);
-
-  useEffect(() => {
-    let intervalId = null;
-    if (isRunning) {
-      intervalId = window.setInterval(() => {
-        setTime((prev) => prev + 1);
-      }, 1000);
-    }
-
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [isRunning]);
-
-  useLayoutEffect(() => {
-    const _time = parseInt(window.localStorage.getItem("time-key"));
-    if (!isNaN(_time)) {
-      setTime(_time);
-    }
-  }, []);
-
-  const toggle = () => {
-    setIsRuning((prev) => !prev);
-  };
-  const reset = () => {
-    setTime(0);
-    setIsRuning((prev) => !prev);
-  };
-
+  const { toggle, reset, time, isRunning } = useTimer();
   return (
     <>
       <h3>
