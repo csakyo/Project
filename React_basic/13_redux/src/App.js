@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import Example from "./010_redux_no_rtk/Example";
+// import Example from "./015_multiple_reducers/Example";
+// import Example from "./020_actionCreator/Example";
+// import Example from "./030_redux_toolkit/Example";
+// import Example from "./040_immer/Example";
+// import Example from "./050_redux_thunk/Example";
+// import Example from "./060_createAsyncThunk/Example";
+// import Example from "./070_middleware/Example";
+
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>完成コード（end）</h2>
+      <Example />
     </div>
   );
-}
+};
 
 export default App;
