@@ -1,4 +1,5 @@
 const initialState = 0;
+
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case "counter/+":
@@ -13,14 +14,14 @@ const reducer = (state = initialState, { type, payload }) => {
 const add = (payload) => {
   return {
     type: "counter/+",
-    payload: payload,
+    payload,
   };
 };
 
 const minus = (payload) => {
   return {
     type: "counter/-",
-    payload: payload,
+    payload,
   };
 };
 
