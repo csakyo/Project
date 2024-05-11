@@ -4,7 +4,9 @@ import { ENDPOINT } from "@/constants";
 import ArticleList from "@/components/articleList";
 
 export default async function SSR() {
-  const articles = await fetch(ENDPOINT).then((res) => res.json());
+  const articles = await fetch(ENDPOINT, { cache: "force-cache" }).then((res) =>
+    res.json()
+  );
   return (
     <>
       <div>SSR Page</div>
