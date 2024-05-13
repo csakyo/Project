@@ -9,8 +9,8 @@ export default async function SSR() {
   );
   return (
     <>
-      <div>SSR Page</div>
-      <ClientComp />
+      {/* <div>SSR Page</div>
+      <ClientComp /> */}
       <ArticleList list={articles} basePath="/010_SSR" />
     </>
   );
