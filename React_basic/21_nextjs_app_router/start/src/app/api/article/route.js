@@ -3,9 +3,8 @@
 import { ENDPOINT } from "@/constants";
 
 export async function GET() {
-
+  const data = await fetch(ENDPOINT).then((res) => res.json);
+  return Response.json(data);
 }
 
-export async function POST(request) {
-
-}
+export async function POST(request) {}
