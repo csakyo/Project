@@ -3,7 +3,7 @@
 import { ENDPOINT } from "@/constants";
 
 export async function GET() {
-  const data = await fetch(ENDPOINT).then((res) => res.json);
+  const data = await fetch(ENDPOINT).then((res) => res.json());
   return Response.json(data);
 }
 
