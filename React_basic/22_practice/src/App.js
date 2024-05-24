@@ -1,13 +1,9 @@
-import "./App.css";
-import LikeButton from "./components/LikeButton";
-
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <LikeButton />
-      </header>
+    <div className="min-h-screen flex justify-center items-center">
+      Weather Application
     </div>
   );
 }
+
 export default App;
