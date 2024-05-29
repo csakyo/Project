@@ -3,15 +3,20 @@ import { ENDPOINT, KEY } from '../constants';
 
 function Weather() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`${ENDPOINT}/weather/?q=Tokyo&APPID=${KEY}&units=metric`)
       .then((res) => res.json())
       .then((result) => {
         setData(result);
-        console.log(result);
+        setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return <div></div>;
+  }
 
   return (
     <div className='p-4'>
