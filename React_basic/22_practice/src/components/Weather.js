@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ENDPOINT, KEY } from '../constants';
+import { ENDPOINT, KEY, IMG } from '../constants';
+import dayjs from 'dayjs';
 
 function Weather() {
   const [data, setData] = useState([]);
@@ -11,6 +12,7 @@ function Weather() {
       .then((result) => {
         setData(result);
         setLoading(false);
+        console.log(result);
       });
   }, []);
 
@@ -54,7 +56,9 @@ function Weather() {
             <p className='font-light'>City Name</p>
             <p className='text-lg font-medium tracking-widest'>{data.name}</p>
           </div>
-          <div className='w-1/2 text-center'>画像</div>
+          <div className='w-1/2 text-center'>
+            <img src={`${IMG}/${data.weather[0].icon}.png`} />
+          </div>
         </div>
         <div className='flex my-3'>
           <div className='w-1/2'>
@@ -68,16 +72,20 @@ function Weather() {
           <div className='w-1/3'>
             <p className='font-light text-xs'>Date</p>
             <p className='text-lg font-medium tracking-widest text-sm'>
-              2021-03-16
+              {dayjs(data.ts).format('YYYY-MM-DD')}
             </p>
           </div>
           <div className='w-1/3'>
             <p className='font-light text-xs'>Temprature</p>
-            <p className='text-lg font-medium tracking-widest text-sm'>20℃</p>
+            <p className='text-lg font-medium tracking-widest text-sm'>
+              {data.main.temp}℃
+            </p>
           </div>
           <div className='w-1/3'>
             <p className='font-light text-xs'>Humidity</p>
-            <p className='text-lg font-medium tracking-widest text-sm'>40%</p>
+            <p className='text-lg font-medium tracking-widest text-sm'>
+              {data.main.humidity}%
+            </p>
           </div>
         </div>
       </div>
