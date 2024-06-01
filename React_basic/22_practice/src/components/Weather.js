@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react';
 import { ENDPOINT, KEY, IMG } from '../constants';
 import dayjs from 'dayjs';
 
-function Weather() {
+function Weather({ city_name }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(city_name);
 
   useEffect(() => {
-    fetch(`${ENDPOINT}/weather/?q=Tokyo&APPID=${KEY}&units=metric`)
+    fetch(`${ENDPOINT}/weather/?q=${city_name}&APPID=${KEY}&units=metric`)
       .then((res) => res.json())
       .then((result) => {
         setData(result);
         setLoading(false);
-        console.log(result);
+      })
+      .finally(() => {
+        setLoading(false);
       });
-  }, []);
+  }, [city_name]);
 
   if (loading) {
     return (
