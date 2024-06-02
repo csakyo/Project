@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ENDPOINT, KEY, IMG } from '../constants';
 import dayjs from 'dayjs';
 
-function Weather({ city_name }) {
+function Weather({ city_name, color_name }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log(city_name);
@@ -49,10 +49,10 @@ function Weather({ city_name }) {
   return (
     <div className='p-4'>
       <div
-        className='p-4 bg-gradient-to-r from-blue-500 to-blue-300
-                w-96 m-auto rounded-xl shadow-2xl 
-                transform hover:scale-110 transition-transform
-                text-white'
+        className={`p-4 bg-gradient-to-r from-${color_name}-500 to-${color_name}-300
+        w-96 m-auto rounded-xl shadow-2xl 
+        transform hover:scale-110 transition-transform
+        text-white`}
       >
         <div className='flex my-3'>
           <div className='w-1/2'>
