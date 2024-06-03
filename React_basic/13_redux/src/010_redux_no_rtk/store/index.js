@@ -1,11 +1,11 @@
-import { createStore } from "redux";
+import { createStore } from 'redux';
 
 const initialState = 0;
 const reducer = (state = initialState, { type, step }) => {
   switch (type) {
-    case "+":
+    case '+':
       return state + step;
-    case "-":
+    case '-':
       return state - step;
     default:
       return state;
