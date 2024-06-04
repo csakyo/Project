@@ -1,38 +1,36 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer } from 'react';
 
 const Example = () => {
   const [state, setState] = useState(0);
-  const [rstate, dispatch] = useReducer((prev, { type }) => {
+  const [rstate, dispatch] = useReducer((prev, { type, step }) => {
     switch (type) {
-      case "+":
-        return ++prev;
-      case "-":
-        return --prev;
-      default:
-        throw new Error("不明なactionです");
+      case '+':
+        return prev + step;
+      case '-':
+        return prev - step;
     }
   }, 0);
 
-  const countUp = () => {
+  const add = () => {
     setState((prev) => ++prev);
   };
-  const rcountUp = () => {
-    dispatch({ type: "+" });
+  const addr = () => {
+    dispatch({ type: '+', step: 2 });
   };
-  const rcountDown = () => {
-    dispatch({ type: "-" });
+  const minusr = () => {
+    dispatch({ type: '-', step: 3 });
   };
 
   return (
     <>
       <div>
         <h3>{state}</h3>
-        <button onClick={countUp}>+</button>
+        <button onClick={add}>ADD</button>
       </div>
       <div>
         <h3>{rstate}</h3>
-        <button onClick={rcountUp}>+</button>
-        <button onClick={rcountDown}>-</button>
+        <button onClick={addr}>ADDR</button>
+        <button onClick={minusr}>MINUSR</button>
       </div>
     </>
   );
