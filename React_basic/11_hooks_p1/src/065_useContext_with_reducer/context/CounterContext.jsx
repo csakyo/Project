@@ -18,9 +18,9 @@ const CounterProvider = ({ children }) => {
   return (
     <>
       <CounterContext.Provider value={state}>
-        <CounterDispatchContext value={dispatch}>
+        <CounterDispatchContext.Provider value={dispatch}>
           {children}
-        </CounterDispatchContext>
+        </CounterDispatchContext.Provider>
       </CounterContext.Provider>
       ;
     </>
