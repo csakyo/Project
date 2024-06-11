@@ -4,9 +4,11 @@ import { CounterProvider } from './context/CounterContext';
 // POINT useContext x useReducer
 const Example = () => {
   return (
-    <CounterProvider>
-      <Counter />
-    </CounterProvider>
+    <>
+      <CounterProvider>
+        <Counter />
+      </CounterProvider>
+    </>
   );
 };
 
