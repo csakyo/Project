@@ -3,8 +3,8 @@ import { createContext, useContext, useReducer } from 'react';
 const TodoContext = createContext();
 const TodoDispatchContext = createContext();
 
-const useTodos = useContext(TodoContext);
-const useDispatchTodos = useContext(TodoDispatchContext);
+const useTodos = () => useContext(TodoContext);
+const useDispatchTodos = () => useContext(TodoDispatchContext);
 
 const todosList = [
   {
@@ -24,36 +24,37 @@ const todosList = [
   },
 ];
 
-const todoReducer = (state, action) => {};
+const todoReducer = (todos, action) => {
+  switch (action.type) {
+    case 'todo/add':
+      return [...todos, action.todo];
+    case 'todo/delete':
+      return todos.filter((todo) => {
+        return todo.id !== action.todo.id;
+      });
+    case 'todo/update':
+      return todos.map((_todo) => {
+        return _todo.id === action.todo.id
+          ? { ..._todo, ...action.todo }
+          : { ..._todo };
+      });
+    default:
+      return todos;
+  }
+};
 
 const TodoProvider = ({ children }) => {
   const [todos, dispatch] = useReducer(todoReducer, todosList);
 
-  const deleteTodo = (id) => {
-    const newTodos = todos.filter((todo) => {
-      return todo.id !== id;
-    });
-
-    setTodos(newTodos);
-  };
-
-  const createTodo = (todo) => {
-    setTodos([...todos, todo]);
-  };
-
-  const updateTodo = (todo) => {
-    const newTodos = todos.map((_todo) => {
-      return _todo.id === todo.id ? { ..._todo, ...todo } : { ..._todo };
-    });
-    setTodos(newTodos);
-  };
   return (
     <>
-      <TodoContext.Provider value={}>
-        <TodoDispatchContext.Provider value={}></TodoDispatchContext.Provider>
+      <TodoContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={dispatch}>
+          {children}
+        </TodoDispatchContext.Provider>
       </TodoContext.Provider>
     </>
   );
 };
 
-export { useTodos, useDispatchTodos };
+export { useTodos, useDispatchTodos, TodoProvider };
