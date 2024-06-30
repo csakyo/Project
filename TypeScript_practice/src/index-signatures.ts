@@ -1,5 +1,16 @@
 export {};
 
-let profile: {} = {};
+interface Profile {
+  name: string;
+  underTwenty: boolean;
+  [index: string]: string | number | boolean;
+}
 
-profile.name = "Ham";
+let profile: Profile = {
+  name: 'Ham',
+  underTwenty: false,
+};
+
+profile.name = 'Ham';
+profile.age = 23;
+profile.nationality = 'Japan';
