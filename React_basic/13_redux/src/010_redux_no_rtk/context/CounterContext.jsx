@@ -3,12 +3,13 @@ import { createContext, useContext, useReducer } from 'react';
 const CounterContext = createContext();
 const CounterDispatchContext = createContext();
 
-const reducer = (prev, { type, step }) => {
+const initialState = 0;
+const reducer = (state = initialState, { type, step }) => {
   switch (type) {
     case '+':
-      return prev + step;
+      return state + step;
     case '-':
-      return prev - step;
+      return state - step;
     default:
       throw new Error('不明なactionです。');
   }

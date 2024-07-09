@@ -1,4 +1,3 @@
-import { useCounter } from '../context/CounterContext';
 import { useSelector } from 'react-redux';
 
 const CounterResult = () => {
