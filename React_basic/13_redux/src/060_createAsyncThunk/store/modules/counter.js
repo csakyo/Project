@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { asyncCount } from '../../api/counter';
 
@@ -22,10 +22,22 @@ const counter = createSlice({
       // return newState;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(addAsyncWithStatus.pending, (state) => {
+      state.stats = 'Loading...';
+    });
+  },
 });
 
 const { add, minus } = counter.actions;
 
+const addAsyncWithSStatus = createAsyncThunk(
+  'counter/asyncCount',
+  async (payload) => {
+    const response = await asyncCount(payload);
+    return response;
+  }
+);
 const addAsync = (payload) => {
   return async (dispatch, getState) => {
     const state = getState();
