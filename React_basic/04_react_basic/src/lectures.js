@@ -5,7 +5,7 @@ const lectures = [
   // '050_project_sample',
   '060_styling',
   '070_component_nest',
-  // '073_practice_component',
+  '073_practice_component',
   // '075_fragment',
   // '080_expr_in_jsx',
   // '085_expr_and_state',
