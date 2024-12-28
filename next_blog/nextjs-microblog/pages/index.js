@@ -4,9 +4,35 @@ import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
 
 import Link from "next/link"
+import utilStyle from "../styles/utils.module.css"
 
 export default function Home() {
   return (
-    <Layout>sjaijsoai</Layout>
+    <Layout>
+      <section className="utilStyle.headingMd">
+        <p>
+          私はフロントエンドエンジニアです
+        </p>
+      </section>
+
+      <section>
+        <h2>エンジニアのブログ</h2>
+        <div>
+          <article>
+            <Link href="/">
+              <img src="/images/thumbnail01.jpg" />
+            </Link>
+            <Link href="/">
+              TESTTEST
+            </Link>
+            <br />
+            <small>
+              Febrary 2024
+            </small>
+          </article>
+        </div>
+      </section>
+
+    </Layout>
   )
 }
