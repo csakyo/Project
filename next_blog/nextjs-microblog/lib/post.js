@@ -11,7 +11,6 @@ export function getPostsData() {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames.map((fileName) => {
         const id = fileName.replace(/\.md$/, "")
-        console.log(id)
 
         // マークダウンファイルを文字列として読み取る
         const fullPath = path.join(postsDirectory, fileName);
@@ -29,3 +28,25 @@ export function getPostsData() {
     })
     return allPostsData
 }
+
+
+export function getAllPostIds() {
+    const fileNames = fs.readdirSync(postsDirectory);
+    return fileNames.map((fileName) => {
+        return {
+            params: {
+                id : fileName.replace(/\.md$/, "")
+            }
+        }
+    }) 
+}
+
+
+// idに基づいてブログ投稿データを返す
+// export function getPostData(id) {
+//     const fullPath = path.join(postsDirectory, `${id}.md`);
+//     const fileContents = fs.readFileSync(fullPath, "utf8");
+
+//     const matterResult = matter(fileContent)
+
+// }
