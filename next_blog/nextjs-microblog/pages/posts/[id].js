@@ -10,6 +10,8 @@ export async function getStaticPaths() {
     }
 }
 
+
+
 export default function Post() {
     return <Layout>動的ルーティング設定</Layout>
 }
