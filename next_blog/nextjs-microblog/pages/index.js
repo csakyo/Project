@@ -8,8 +8,7 @@ import {getPostsData} from '../lib/post'
 
 // SSGの場合
 export async function getStaticProps() {
-  const allPostsData = getPostsData();
-  console.log(allPostsData)
+  const allPostsData = getPostsData(); // id, title, data, thumbnail
 
   return {
     props: {
@@ -17,6 +16,15 @@ export async function getStaticProps() {
     }
   }
 }
+
+//SSRの場合
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {
+
+//     }
+//   }
+// }
 
 export default function Home({allPostsData}) {
   return (
