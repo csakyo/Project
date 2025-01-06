@@ -13,7 +13,6 @@ export function getPostsData() {
     const fileNames = fs.readdirSync(postsDirectory);
     const allPostsData = fileNames.map((fileName) => {
         const id = fileName.replace(/\.md$/, "")
-        console.log(id)
 
         // マークダウンファイルを文字列として読み取る
         const fullPath = path.join(postsDirectory, fileName);
@@ -48,13 +47,20 @@ export function getAllPostIds() {
 
 // idに基づいてブログ投稿データを返す
 export async function getPostData(id) {
+    // パスを取得
     const fullPath = path.join(postsDirectory, `${id}.md`);
+    
+    //  mdファイルの中身を読み込む
     const fileContents = fs.readFileSync(fullPath, "utf8");
 
+    //メタデータを解析
     const matterResult = matter(fileContents)
 
-    const blogContent = await remark().use(html).process(matterResult)
-    
+    // remarkライブラリを使用してhtmlへ変換して変数へ格納
+    // そうでなければただの文字列で入ってしまう
+    const blogContent = await remark().use(html).process(matterResult.content)
+ 
+    // string型に変換
     const blogContentHTML = blogContent.toString()
 
     return {
