@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export async function generateMetadata() {
+    return { 
+        title: "最初の投稿",
+    }
+}
+
 const Page = () => {
     return (
         <div>
