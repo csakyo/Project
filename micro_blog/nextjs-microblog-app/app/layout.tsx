@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
+import styles from "./page.module.css";
+import utilStyles from "../styles/utils.module.css";
 
 const name = "Next.js Practice"
 export const siteTitle = "Next.js blog"
@@ -14,10 +15,13 @@ export default function RootLayout({children}: Readonly<{children: React.ReactNo
   return (
     <html lang="en">
       <body>
-        <header>
-          <img src="/images/profile.png" />
-          <h1>{name}</h1>
+        <div className={styles.container}>
+        <header className={styles.header}>
+          <img src="/images/profile.png" className={utilStyles.borderCircle}/>
+          <h1 className={utilStyles.heading2Xl}>{name}</h1>
         </header>
+        <main>{children}</main>
+        </div>
       </body>
     </html>
   );
