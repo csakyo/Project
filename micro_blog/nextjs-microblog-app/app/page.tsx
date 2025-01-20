@@ -6,7 +6,8 @@ import {getPostsData} from '../lib/post'
 
 // SSG
 export async function getProps() {
-  const allPostsData = getPostsData(); // id, title, data, thumbnail
+  const allPostsData = getPostsData(); 
+  // id, title, data, thumbnail
 
   return allPostsData;
 }
