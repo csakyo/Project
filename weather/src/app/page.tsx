@@ -1,50 +1,20 @@
-import { GetServerSideProps } from 'next';
-import { useEffect, useState } from 'react';
-// import { Card } from '../components/Card';
-// import { fetcher } from '../utils/fetcher';
+import WeatherForm from './components/WeatherForm';
 
-type DashboardProps = {
-  currency: { USDJPY: number };
-  weather: { temp: number; condition: string };
-};
+export default async function Home() {
+  const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY!;
+  const defaultCity = 'Tokyo';
 
-export default function Dashboard({ currency, weather }: DashboardProps) {
-  const [usdJpy, setUsdJpy] = useState(currency.USDJPY);
-
-  // CSRで10秒ごとに為替更新
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      const data = await fetcher(
-        'https://api.exchangerate.host/latest?base=USD'
-      );
-      if (data && data.rates) setUsdJpy(data.rates.JPY);
-    }, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const res = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${API_KEY}`,
+    { cache: 'no-store' } // SSRで毎回最新データ
+  );
+  const initialWeather = await res.json();
 
   return (
-    <div className='p-8 grid grid-cols-1 md:grid-cols-3 gap-4'>
-      <Card title='USD/JPY' value={usdJpy.toFixed(2)} />
-      <Card title='天気' value={`${weather.temp}°C`} change={undefined} />
-      <Card title='サンプル株価' value='1234' change={+5} />
-    </div>
+    <main className='p-6 font-sans'>
+      <h1 className='text-2xl mb-4'>🌤 天気ダッシュボード</h1>
+
+      <WeatherForm initialWeather={initialWeather} />
+    </main>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  // SSRで初期データ取得
-  const currencyData = await fetcher(
-    'https://api.exchangerate.host/latest?base=USD'
-  );
-  const weatherData = { temp: 25, condition: '晴れ' }; // サンプル固定値でもOK
-
-  return {
-    props: {
-      currency: currencyData?.rates
-        ? { USDJPY: currencyData.rates.JPY }
-        : { USDJPY: 0 },
-      weather: weatherData,
-    },
-  };
-};
