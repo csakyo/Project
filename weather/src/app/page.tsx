@@ -1,4 +1,4 @@
-import WeatherForm from './components/WeatherForm';
+import WeatherForm from '@/app/components/WeatherForm';
 
 export default async function Home() {
   const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY!;
