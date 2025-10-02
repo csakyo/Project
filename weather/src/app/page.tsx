@@ -1,7 +1,7 @@
 import WeatherForm from './components/WeatherForm';
 
 export default async function Home() {
-  const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY!;
+  const API_KEY = process.env.OPENWEATHER_API_KEY!;
   const defaultCity = 'Tokyo';
 
   const res = await fetch(
