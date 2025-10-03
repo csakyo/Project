@@ -5,15 +5,22 @@ type CacheEntry = {
   timestamp: number;
 };
 
-const cache: Record<string, CacheEntry> = {}; // 都市ごとのキャッシュ
-const CACHE_TTL = 60 * 1000; // 1分間キャッシュ
+const cache: Record<string, CacheEntry> = {};
+const CACHE_TTL = 60 * 1000; // 1分間
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const city = searchParams.get('city') || 'Tokyo';
   const apiKey = process.env.OPENWEATHER_API_KEY;
 
-  // もしキャッシュがあり、有効期限内ならそれを返す
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: 'API key is not set' },
+      { status: 500 }
+    );
+  }
+
+  // キャッシュが有効ならそれを返す
   if (cache[city] && Date.now() - cache[city].timestamp < CACHE_TTL) {
     return NextResponse.json({
       data: cache[city].data,
@@ -21,13 +28,21 @@ export async function GET(req: Request) {
     });
   }
 
-  // 外部APIを呼ぶ
+  // 外部API呼び出し
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=ja`
   );
+
+  if (!res.ok) {
+    return NextResponse.json(
+      { error: `Failed to fetch weather data for ${city}` },
+      { status: res.status }
+    );
+  }
+
   const data = await res.json();
 
-  // キャッシュに保存
+  // キャッシュ保存
   cache[city] = {
     data,
     timestamp: Date.now(),
