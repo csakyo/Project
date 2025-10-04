@@ -20,7 +20,7 @@ export default function WeatherForm({
     if (!city) return;
     const res = await fetch(`/api/weather?city=${city}`);
     const data = await res.json();
-    setWeather(data);
+    setWeather(data.data);
   };
 
   return (
