@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1>🌤 天気ダッシュボード</h1>
+      {/* <h1>🌤 天気ダッシュボード</h1> */}
       <WeatherForm initialWeather={initialWeather} />
     </main>
   );
