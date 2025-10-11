@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 type WeatherData = {
   main: { temp: number };
@@ -14,16 +14,23 @@ export default function WeatherForm({
   initialWeather: WeatherData;
 }) {
   const [weather, setWeather] = useState<WeatherData>(initialWeather);
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(''); // 選択された都市名
 
-  const fetchWeather = async () => {
-    if (!city) return;
-    const res = await fetch(`/api/weather?city=${city}`);
-    const data = await res.json();
-    setWeather(data.data);
-  };
+  const cities = ['Tokyo', 'Osaka', 'Nagoya', 'Sapporo', 'Fukuoka'];
 
-  // 背景を天気で切り替え
+  // 都市が選択されたら即時天気取得
+  useEffect(() => {
+    const fetchWeather = async () => {
+      if (!city) return;
+      const res = await fetch(`/api/weather?city=${city}`);
+      const data = await res.json();
+      setWeather(data.data);
+    };
+
+    fetchWeather();
+  }, [city]);
+
+  // 背景画像切り替え
   const weatherMain = weather?.weather?.[0]?.main?.toLowerCase();
   let bgImage = '/default.jpg';
 
@@ -31,37 +38,25 @@ export default function WeatherForm({
   else if (weatherMain === 'clouds') bgImage = '/cloudy.png';
   else if (weatherMain === 'rain') bgImage = '/rainy.png';
 
-  // 候補リスト
-  const cities = ['Tokyo', 'Osaka', 'Nagoya', 'Sapporo', 'Fukuoka'];
-
   return (
     <div
-      className='min-h-screen bg-cover bg-center p-6'
+      className='min-h-screen bg-cover bg-center p-6 transition-all duration-500'
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <div className='bg-white bg-opacity-70 p-4 rounded-lg max-w-md mx-auto'>
         <div className='mb-4 flex items-center space-x-2'>
-          {/* 自由入力＋候補付き */}
-          <input
-            type='text'
-            list='city-list'
+          <select
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            placeholder='都市名を入力または選択'
             className='border p-2 rounded w-full'
-          />
-          <datalist id='city-list'>
-            {cities.map((c) => (
-              <option key={c} value={c} />
-            ))}
-          </datalist>
-
-          <button
-            onClick={fetchWeather}
-            className='bg-blue-500 text-white px-3 py-2 rounded'
           >
-            検索 🔎
-          </button>
+            <option value=''>都市を選択してください</option>
+            {cities.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
         </div>
 
         <p>都市: {weather?.name}</p>
