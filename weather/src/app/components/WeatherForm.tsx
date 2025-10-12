@@ -60,7 +60,7 @@ export default function WeatherForm({
         </div>
 
         <p>都市: {weather?.name}</p>
-        <p>気温: {Math.round(weather?.main?.temp - 273.15)}°C</p>
+        <p>気温: {Math.round(weather?.main?.temp)}°C</p>
         <p>天気: {weather?.weather?.[0]?.description}</p>
       </div>
     </div>
