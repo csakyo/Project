@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; // ★追加
 
 type WeatherData = {
   main: { temp: number };
@@ -14,7 +15,7 @@ export default function WeatherForm({
   initialWeather: WeatherData;
 }) {
   const [weather, setWeather] = useState<WeatherData>(initialWeather);
-  const [city, setCity] = useState(''); // 選択された都市名
+  const [city, setCity] = useState('');
 
   const cities = ['Tokyo', 'Osaka', 'Nagoya', 'Sapporo', 'Fukuoka'];
 
@@ -39,29 +40,42 @@ export default function WeatherForm({
   else if (weatherMain === 'rain') bgImage = '/rainy.png';
 
   return (
-    <div
-      className='min-h-screen bg-cover bg-center p-6 transition-all duration-500'
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <div className='bg-white bg-opacity-70 p-4 rounded-lg max-w-md mx-auto'>
-        <div className='mb-4 flex items-center space-x-2'>
-          <select
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className='border p-2 rounded w-full'
-          >
-            <option value=''>都市を選択してください</option>
-            {cities.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className='relative min-h-screen overflow-hidden'>
+      {/* AnimatePresence で画像のフェードイン・アウト */}
+      <AnimatePresence mode='wait'>
+        <motion.div
+          key={bgImage} // 画像が変わるたびに再描画される
+          className='absolute inset-0 bg-cover bg-center'
+          style={{ backgroundImage: `url(${bgImage})` }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }} // フェード時間
+        />
+      </AnimatePresence>
 
-        <p>都市: {weather?.name}</p>
-        <p>気温: {Math.round(weather?.main?.temp)}°C</p>
-        <p>天気: {weather?.weather?.[0]?.description}</p>
+      {/* 内容部分 */}
+      <div className='relative z-10 p-6'>
+        <div className='bg-white bg-opacity-70 p-4 rounded-lg max-w-md mx-auto'>
+          <div className='mb-4 flex items-center space-x-2'>
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className='border p-2 rounded w-full'
+            >
+              <option value=''>都市を選択してください</option>
+              {cities.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <p>都市: {weather?.name}</p>
+          <p>気温: {Math.round(weather?.main?.temp)}°C</p>
+          <p>天気: {weather?.weather?.[0]?.description}</p>
+        </div>
       </div>
     </div>
   );
