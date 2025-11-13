@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // ★追加
+import { motion, AnimatePresence } from 'framer-motion';
 
 type WeatherData = {
   main: { temp: number };
@@ -41,20 +41,32 @@ export default function WeatherForm({
 
   return (
     <div className='relative min-h-screen overflow-hidden'>
-      {/* AnimatePresence で画像のフェードイン・アウト */}
+      {/* AnimatePresenceで天気変更時にフェード */}
       <AnimatePresence mode='wait'>
         <motion.div
-          key={bgImage} // 画像が変わるたびに再描画される
+          key={bgImage}
           className='absolute inset-0 bg-cover bg-center'
           style={{ backgroundImage: `url(${bgImage})` }}
+          // フェードイン・アウト
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{
+            opacity: 1,
+            backgroundPositionX: ['0%', '100%'], // 背景がゆっくり横に動く
+          }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }} // フェード時間
+          transition={{
+            opacity: { duration: 1 },
+            backgroundPositionX: {
+              duration: 60, // ゆっくり60秒かけて動く
+              ease: 'linear',
+              repeat: Infinity, // 永久ループ
+              repeatType: 'mirror', // 往復する動き
+            },
+          }}
         />
       </AnimatePresence>
 
-      {/* 内容部分 */}
+      {/* 内容 */}
       <div className='relative z-10 p-6'>
         <div className='bg-white bg-opacity-70 p-4 rounded-lg max-w-md mx-auto'>
           <div className='mb-4 flex items-center space-x-2'>
