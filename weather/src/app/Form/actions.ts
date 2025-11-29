@@ -1,12 +1,13 @@
 'use server';
 
-export async function submitContactForm(formData: FormData) {
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const message = formData.get('message');
+export async function submitContactForm(data: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  console.log('受信データ:', data);
 
-  // ここで email 送信 / DB 保存など
-  console.log({ name, email, message });
+  // ここでメール送信や DB 保存
 
   return { success: true };
 }
